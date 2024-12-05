@@ -1,0 +1,23 @@
+klub:
+1. harmonogram treningów i meczów
+2. lista zawodników
+3. profil składu, statystyki i role zawodników
+4. obecność na treningach i meczach
+5. lista osiągnięć kluby (pucharki mozna przewijac)
+
+admin:
+1. administrator dodawanie meczy i wydarzen :), *dodawanie postów przez menadżerów
+
+strona główna: 
+- 2 bloki divy
+- pierwszy blok div ostatni mecz -> przycisk pokaz wszystkie meczy - > scrollujesz 
+- drugi blok div ostatnie wydarzenia (transfery, kontuzje ,bramki, strzelcy, wygrane puchary) - > przycisk -> scrollujesz
+
+*czat:
+*1. czat drużynowy + logowanie i rejestracja, gdzie drużyna, może komunikować się z trenerem
+ 
+
+
+
+
+
