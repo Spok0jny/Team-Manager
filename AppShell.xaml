@@ -4,13 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Team_Manager"
-    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutBehavior="Disabled"
     Title="Team_Manager">
-
+    <TabBar>
     <ShellContent
         Title="Strona głowna"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" /> 
+        
     <ShellContent
         Title="Klub"
         ContentTemplate="{DataTemplate local:Klub}"
@@ -23,5 +24,5 @@
         Title="Ustawienia"
         ContentTemplate="{DataTemplate local:Ustawienia}"
         Route="Ustawienia" />
-
+    </TabBar>
 </Shell>
