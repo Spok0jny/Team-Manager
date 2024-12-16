@@ -41,9 +41,9 @@
                         HorizontalOptions="Center" />
 
                     <Grid ColumnDefinitions="*, Auto, *" RowDefinitions="Auto, Auto" Padding="0,10">
-                        <Label Grid.Row="0" Grid.Column="0" Text="Drużyna 1" FontSize="16" TextColor="#FFD700" HorizontalOptions="Center" />
+                        <Label Grid.Row="0" Grid.Column="0" Text="Drużyna 1" FontSize="16" TextColor="Gold" HorizontalOptions="Center" />
                         <Label Grid.Row="0" Grid.Column="1" Text="-" FontSize="16" TextColor="White" HorizontalOptions="Center" />
-                        <Label Grid.Row="0" Grid.Column="2" Text="Drużyna 2" FontSize="16" TextColor="#FFD700" HorizontalOptions="Center" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="Drużyna 2" FontSize="16" TextColor="Gold" HorizontalOptions="Center" />
                     </Grid>
 
                     <Frame CornerRadius="10" Padding="0">

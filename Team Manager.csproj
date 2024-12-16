@@ -63,13 +63,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Admin.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Klub.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Ustawienia.xaml">
+	  <MauiXaml Update="KlubPages\Osiagniecia.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
