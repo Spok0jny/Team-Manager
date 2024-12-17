@@ -2,8 +2,11 @@ namespace Team_Manager;
 
 public partial class Klub : ContentPage
 {
-	public Klub()
+	private readonly LocalDbServices _dbService;
+	public Klub(LocalDbServices dbService)
 	{
 		InitializeComponent();
+		_dbService = dbService;
+
 	}
 }
