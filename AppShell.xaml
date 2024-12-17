@@ -4,25 +4,41 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Team_Manager"
+    xmlns:KlubPages="clr-namespace:Team_Manager.KlubPages"
     Shell.FlyoutBehavior="Disabled"
     Title="Team_Manager">
+
+    <Shell.FlyoutContent>
+      
+        <StackLayout x:Name="FlyoutMenu" IsVisible="False" Padding="10">
+            <Button
+                Text="Osiągnięcia"
+                FontSize="18"
+                HorizontalOptions="FillAndExpand"
+                Clicked="OnOsiagnieciaClicked" />
+        </StackLayout>
+    </Shell.FlyoutContent>
+
     <TabBar>
-    <ShellContent
-        Title="Strona głowna"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" /> 
-        
-    <ShellContent
-        Title="Klub"
-        ContentTemplate="{DataTemplate local:Klub}"
-        Route="Klub" /> 
-    <ShellContent
-        Title="Admin"
-        ContentTemplate="{DataTemplate local:Admin}"
-        Route="Admin" /> 
-    <ShellContent
-        Title="Ustawienia"
-        ContentTemplate="{DataTemplate local:Ustawienia}"
-        Route="Ustawienia" />
+        <ShellContent
+            Title="Strona główna"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <ShellContent
+            Title="Klub"
+            ContentTemplate="{DataTemplate local:Klub}"
+            Route="Klub"
+            x:Name="KlubTab" />
+
+        <ShellContent
+            Title="Admin"
+            ContentTemplate="{DataTemplate local:Admin}"
+            Route="Admin" />
+
+        <ShellContent
+            Title="Ustawienia"
+            ContentTemplate="{DataTemplate local:Ustawienia}"
+            Route="Ustawienia" />
     </TabBar>
 </Shell>
