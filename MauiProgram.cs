@@ -16,6 +16,7 @@ namespace Team_Manager
                 });
             builder.Services.AddTransient<MainPage> ();
             builder.Services.AddTransient<Klub>();
+            builder.Services.AddTransient<KlubPages.ListaZawodnikow>();
             builder.Services.AddTransient<Admin>();
             builder.Services.AddTransient<Ustawienia>();
             builder.Services.AddSingleton<LocalDbServices>();

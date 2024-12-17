@@ -35,7 +35,9 @@ namespace Team_Manager
         }
         private async void OnListaZawodnikowClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KlubPages.ListaZawodnikow());
+            var dbService = App.Services.GetRequiredService<LocalDbServices>();
+            var listaZawodnikowPage = new KlubPages.ListaZawodnikow(dbService);
+            await Navigation.PushAsync(listaZawodnikowPage);
         }
         private async void OnHarmonogramClicked(object sender, EventArgs e)
         {

@@ -5,7 +5,29 @@
              Title="ListaZawodnikow">
     <FlexLayout>
         <VerticalStackLayout>
-            
+            <Entry x:Name="imieEntry" Placeholder="Imię"></Entry>
+            <Entry x:Name="nazwiskoEntry" Placeholder="Nazwisko"></Entry>
+            <Button Text="Zapisz" x:Name="zapiszButton" Clicked="zapiszButton_Clicked"></Button>
+            <ListView x:Name="listView" FlexLayout.Grow="1" HasUnevenRows="True" ItemTapped="listView_ItemTapped">
+                      <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Padding="5">
+                            <Label Text="{Binding Id}"></Label>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Imie}"></Label>
+                                    <Label Grid.Column="1" Text="{Binding Nazwisko}"></Label>
+                                </Grid>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </FlexLayout>
 </ContentPage>
