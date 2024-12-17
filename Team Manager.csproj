@@ -66,6 +66,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="KlubPages\Harmonogram.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="KlubPages\ListaZawodnikow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="KlubPages\Obecnosc.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="KlubPages\Osiagniecia.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

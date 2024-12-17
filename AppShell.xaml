@@ -9,13 +9,31 @@
     Title="Team_Manager">
 
     <Shell.FlyoutContent>
-      
         <StackLayout x:Name="FlyoutMenu" IsVisible="False" Padding="10">
+            <Button
+         Text="Lista zawodników"
+         FontSize="18"
+         HorizontalOptions="FillAndExpand"
+         Clicked="OnListaZawodnikowClicked" />
+
+            <Button
+                Text="Harmonogram"
+                FontSize="18"
+                HorizontalOptions="FillAndExpand"
+                Clicked="OnHarmonogramClicked" /> 
+            <Button
+                Text="Obecność"
+                FontSize="18"
+                HorizontalOptions="FillAndExpand"
+                Clicked="OnObecnoscClicked" />
+
             <Button
                 Text="Osiągnięcia"
                 FontSize="18"
                 HorizontalOptions="FillAndExpand"
                 Clicked="OnOsiagnieciaClicked" />
+
+
         </StackLayout>
     </Shell.FlyoutContent>
 

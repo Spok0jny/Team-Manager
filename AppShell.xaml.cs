@@ -33,5 +33,17 @@ namespace Team_Manager
         {
             await Navigation.PushAsync(new KlubPages.Osiagniecia());
         }
+        private async void OnListaZawodnikowClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new KlubPages.ListaZawodnikow());
+        }
+        private async void OnHarmonogramClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new KlubPages.Harmonogram());
+        }
+        private async void OnObecnoscClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new KlubPages.Obecnosc());
+        }
     }
 }
