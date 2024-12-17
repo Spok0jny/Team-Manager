@@ -20,7 +20,7 @@
                 Text="Harmonogram"
                 FontSize="18"
                 HorizontalOptions="FillAndExpand"
-                Clicked="OnHarmonogramClicked" /> 
+                Clicked="OnHarmonogramClicked" />
             <Button
                 Text="Obecność"
                 FontSize="18"

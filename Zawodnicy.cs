@@ -20,9 +20,6 @@ namespace Team_Manager
         [Column("nazwisko")]
         public string Nazwisko { get; set; }
 
-        [Column("Klub")]
-        public string Klub { get; set; }
-
 
 
     }
