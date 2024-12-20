@@ -35,6 +35,7 @@ namespace Team_Manager
         }
         private async void OnListaZawodnikowClicked(object sender, EventArgs e)
         {
+            //stad brac nawigacja jak nie dziala
             var dbService = App.Services.GetRequiredService<LocalDbServices>();
             var listaZawodnikowPage = new KlubPages.ListaZawodnikow(dbService);
             await Navigation.PushAsync(listaZawodnikowPage);

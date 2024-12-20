@@ -4,9 +4,14 @@
              x:Class="Team_Manager.Admin"
              Title="Admin">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Entry x:Name="TytulWydarzeniaEntry" Text="" Placeholder="Tytuł wydarzenia"></Entry>
+        <Image x:Name="PhotoImage" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
+        <Button Text="Upload Photo"
+                    Clicked="OnUploadPhotoClicked" />
+        <Entry x:Name="AutorEntry" Text="" Placeholder="Autor"></Entry>
+        <DatePicker x:Name="DataEntry"
+                        Date="{Binding SelectedDate}"
+                        Format="yyyy-MM-dd" />
+        <Button Text="Dodaj wydarzenie" Clicked="OnAddEventClicked"></Button>
     </VerticalStackLayout>
 </ContentPage>

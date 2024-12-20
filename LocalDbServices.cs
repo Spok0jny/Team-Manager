@@ -15,6 +15,7 @@ namespace Team_Manager
         {
             _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DB_NAME));
             _connection.CreateTableAsync<Zawodnicy>();
+            _connection.CreateTableAsync<Wydarzenia>();
         }
 
         //zwraca listę wszystkich zawodników
@@ -46,6 +47,38 @@ namespace Team_Manager
         {
             await _connection.DeleteAsync(zawodnik);
         }
+
+        //zwraca listę wszystkich wydarzeń 
+        
+        public async Task<List<Wydarzenia>> GetWydarzenia()
+        {
+            return await _connection.Table<Wydarzenia>().ToListAsync();
+        }
+
+        //zwraca wydarzenie po id 
+        public async Task<Wydarzenia> GetWydarzenieById(int id)
+        {
+            return await _connection.Table<Wydarzenia>().Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+        //tworzy wydarzenie
+        public async Task CreateWydarzenie(Wydarzenia wydarzenie)
+        {
+            await _connection.InsertAsync(wydarzenie);
+        }
+
+        //aktualizuje wydarzenie
+        public async Task UpdateWydarzenie(Wydarzenia wydarzenie)
+        {
+            await _connection.UpdateAsync(wydarzenie);
+        }
+
+        //usuwa wydarzenie 
+        public async Task DeleteWydarzenie(Wydarzenia wydarzenie)
+        {
+            await _connection.DeleteAsync(wydarzenie);
+        }
+
+
 
 
     }

@@ -1,33 +1,72 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.Maui.Controls;
 
-namespace Team_Manager
+namespace Team_Manager;
+
+public partial class MainPage : ContentPage
 {
-    //elo
-    public partial class MainPage : ContentPage
+    public ObservableCollection<Event> RecentEvents { get; set; }
+    public ImageSource LatestEventPhoto { get; set; }
+    public string LatestEventTitle { get; set; }
+    public string LatestEventDate { get; set; }
+
+    private readonly LocalDbServices _dbService;
+
+    public MainPage(LocalDbServices dbService)
     {
-       
-        public ObservableCollection<Event> RecentEvents { get; set; }
+        InitializeComponent();
+        _dbService = dbService;
 
-        public MainPage()
+        RecentEvents = new ObservableCollection<Event>();
+        BindingContext = this;
+
+        LoadRecentEvents();
+    }
+
+
+
+    private async void LoadRecentEvents()
+    {
+        try
         {
-            InitializeComponent();
-            BindingContext = this;
+            var events = (await _dbService.GetWydarzenia())
+                .OrderByDescending(e => e.dataWydarzenia)
+                .ToList();
 
-            RecentEvents = new ObservableCollection<Event>
+            RecentEvents.Clear();
+
+            foreach (var e in events)
             {
-                new Event { EventTitle = "Daniel B przechodzi do FC Mendoza", EventDate = "15.12.2024" },
-                new Event { EventTitle = "Lewandowski Robert z hattrickiem", EventDate = "14.12.2024" },
-                new Event { EventTitle = "Daniel B marnuje podanie Roberta Lewandowskiego!", EventDate = "14.12.2024" },
-                new Event { EventTitle = "Daniel B z polamana noga po wejsciu Virgila Van Dika", EventDate = "09.11.2024" }
-            };
-        }
+                RecentEvents.Add(new Event
+                {
+                    EventTitle = e.tytul,
+                    EventDate = e.dataWydarzenia.ToString("dd MMM yyyy"),
+                    EventPhoto = ImageSource.FromStream(() => new MemoryStream(e.zdjecie))
+                });
+            }
 
-       
-        public class Event
-        {
-            public string EventTitle { get; set; }
-            public string EventDate { get; set; }
+            
+            if (RecentEvents.Any())
+            {
+                var latestEvent = RecentEvents.First();
+                LatestEventPhoto = latestEvent.EventPhoto;
+                LatestEventTitle = latestEvent.EventTitle;
+                LatestEventDate = latestEvent.EventDate;
+
+                OnPropertyChanged(nameof(LatestEventPhoto));
+                OnPropertyChanged(nameof(LatestEventTitle));
+                OnPropertyChanged(nameof(LatestEventDate));
+            }
         }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", $"Failed to load events: {ex.Message}", "OK");
+        }
+    }
+
+    public class Event
+    {
+        public string EventTitle { get; set; }
+        public string EventDate { get; set; }
+        public ImageSource EventPhoto { get; set; }
     }
 }
