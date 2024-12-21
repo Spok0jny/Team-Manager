@@ -2,11 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Team_Manager.KlubPages.Harmonogram"
-             Title="Harmonogram">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
+             Title="Harmonogram"
+             BackgroundColor="#1E1E2E">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label 
+            Text="Harmonogram"
+            FontSize="24"
+            FontAttributes="Bold"
+            TextColor="White"
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+            <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="10">
+                <CollectionView x:Name="KalendarzView"
+                            ItemsSource="{Binding DniTygodnia}"
+                            SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="#3A3A50" CornerRadius="5" Padding="10" Margin="5">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Data}" FontSize="16" TextColor="Gold" />
+                                    <Label Text="{Binding Typ}" FontSize="14" TextColor="White" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+         
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Dodaj Nowe Wydarzenie" FontSize="18" FontAttributes="Bold" TextColor="Gold" />
+                <DatePicker x:Name="dataPicker" Format="dd/MM/yyyy" />
+                <Entry x:Name="typEntry" Placeholder="Typ wydarzenia" />
+                <Button Text="Dodaj wydarzenie" Clicked="DodajWydarzenieButton_Clicked" BackgroundColor="Gold" TextColor="Black" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

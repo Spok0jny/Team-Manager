@@ -62,40 +62,71 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="15" HasShadow="True">
-                <VerticalStackLayout Spacing="20">
-                    <Label
-                        Text="Ostatnie Wydarzenia"
-                        FontSize="22"
-                        FontAttributes="Bold"
-                        TextColor="White"
-                        HorizontalOptions="Center" />
+           <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="15" HasShadow="True">
+    <VerticalStackLayout Spacing="20">
+        <Label
+            Text="Ostatnie Wydarzenia"
+            FontSize="22"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center" />
 
-                    <CollectionView ItemsSource="{Binding RecentEvents}" HeightRequest="200">
-                        
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <VerticalStackLayout VerticalOptions="EndAndExpand">
-                                    <Label Text="{Binding EventTitle}" FontSize="18" TextColor="White" />
-                                        <Image Source="{Binding EventPhoto}" Aspect="AspectFill" />
-                                        <Label Text="{Binding EventDate}" FontSize="14" TextColor="#FFD700"  VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" />
+        <CollectionView ItemsSource="{Binding RecentEvents}" HeightRequest="350">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="#3E3E50" CornerRadius="10" Padding="10" Margin="5">
+                        <VerticalStackLayout Spacing="10">
 
-                                </VerticalStackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                      
+                            <Image Source="{Binding EventPhoto}" Aspect="AspectFill" HeightRequest="200"  />
 
-                    <Button
-                        Text="Wszystkie wydarzenia"
-                        FontSize="16"
-                        TextTransform="Uppercase"
-                        BackgroundColor="#FFD700"
-                        TextColor="#1E1E2E"
-                        CornerRadius="20"
-                        Padding="10"
-                        HorizontalOptions="Center" />
-                </VerticalStackLayout>
-            </Frame>
+
+                                            <Label
+                                            Text="{Binding EventTitle}"
+                                            FontSize="16"
+                                            FontAttributes="Bold"
+                                            TextColor="Gold"
+                                            HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center" />
+
+                                             <Grid ColumnDefinitions="*, Auto" Padding="0,5,0,0">
+                                             <Label
+                                            Text="{Binding EventDate}"
+                                            FontSize="14"
+                                            TextColor="White"
+                                            HorizontalOptions="Start" />
+
+                                             <Label
+                                            Text=" | "
+                                            FontSize="14"
+                                            TextColor="White"
+                                            HorizontalOptions="Center" />
+
+                                             <Label
+                                            Text="{Binding Author}"
+                                            FontSize="14"
+                                            TextColor="#FFD700"
+                                            HorizontalOptions="End" />
+                                             </Grid> 
+
+
+                         </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button
+            Text="Wszystkie wydarzenia"
+            FontSize="16"
+            TextTransform="Uppercase"
+            BackgroundColor="#FFD700"
+            TextColor="#1E1E2E"
+            CornerRadius="20"
+            Padding="10"
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</Frame>
 
         </VerticalStackLayout>
     </ScrollView>

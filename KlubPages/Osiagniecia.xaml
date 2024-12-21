@@ -2,6 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Team_Manager.KlubPages.Osiagniecia"
-             Title="Osiagniecia">
-    
+             Title="Osiągnięcia"
+             BackgroundColor="#1E1E2E">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+           
+            <Label 
+                Text="Osiągnięcia Klubu"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="Gold"
+                HorizontalOptions="Center" />
+
+            <CollectionView x:Name="KlubOsiagnieciaView" ItemsSource="{Binding OsiagnieciaKlubu}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Tytul}" FontSize="16" TextColor="White" />
+                                <Label Text="{Binding Data}" FontSize="14" TextColor="#FFD700" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+     
+            <Label 
+                Text="Osiągnięcia Zawodników"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="Gold"
+                HorizontalOptions="Center" />
+
+            <CollectionView x:Name="ZawodnicyOsiagnieciaView" ItemsSource="{Binding OsiagnieciaZawodnikow}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Tytul}" FontSize="16" TextColor="White" />
+                                <Label Text="{Binding Zawodnik}" FontSize="14" TextColor="#FFD700" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

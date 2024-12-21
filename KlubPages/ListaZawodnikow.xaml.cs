@@ -6,9 +6,10 @@ public partial class ListaZawodnikow : ContentPage
 {
     private readonly LocalDbServices _dbService;
     private ObservableCollection<Zawodnicy> _zawodnicy;
+
     public ListaZawodnikow(LocalDbServices dbService)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _dbService = dbService;
         _zawodnicy = new ObservableCollection<Zawodnicy>();
         listView.ItemsSource = _zawodnicy;
@@ -17,40 +18,52 @@ public partial class ListaZawodnikow : ContentPage
 
     private async void zapiszButton_Clicked(object sender, EventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(imieEntry.Text) && !string.IsNullOrWhiteSpace(nazwiskoEntry.Text))
+        
+        if (!string.IsNullOrWhiteSpace(imieEntry.Text) &&
+            !string.IsNullOrWhiteSpace(nazwiskoEntry.Text) &&
+            !string.IsNullOrWhiteSpace(pozycjaEntry.Text) &&
+            !string.IsNullOrWhiteSpace(numerEntry.Text) &&
+            int.TryParse(wiekEntry.Text, out int wiek) &&
+            int.TryParse(numerEntry.Text, out int numer))
         {
             var nowyZawodnik = new Zawodnicy
             {
+                Numer = numer,
+                Pozycja = pozycjaEntry.Text,
                 Imie = imieEntry.Text,
-                Nazwisko = nazwiskoEntry.Text
+                Nazwisko = nazwiskoEntry.Text,
+                Wiek = wiek,
+                KoniecKontraktu = koniecKontraktuPicker.Date.ToString("dd/MM/yyyy")
             };
 
             await _dbService.CreateZawodnik(nowyZawodnik);
+           
+            numerEntry.Text = string.Empty;
+            pozycjaEntry.Text = string.Empty;
             imieEntry.Text = string.Empty;
             nazwiskoEntry.Text = string.Empty;
+            wiekEntry.Text = string.Empty;
+            koniecKontraktuPicker.Date = DateTime.Now;
 
+           
             await WczytajListeZawodnikow();
         }
         else
         {
-            await DisplayAlert("B³¹d", "Uzupe³nij wszystkie pola.", "OK");
+            await DisplayAlert("B³¹d", "Uzupe³nij wszystkie pola poprawnie.", "OK");
         }
-
     }
 
-    private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
-    {
+    
 
-    }
     private async Task WczytajListeZawodnikow()
     {
- 
         var listaZawodnikow = await _dbService.GetZawodnicy();
 
-   
         _zawodnicy.Clear();
         foreach (var zawodnik in listaZawodnikow)
         {
+            
             _zawodnicy.Add(zawodnik);
         }
     }

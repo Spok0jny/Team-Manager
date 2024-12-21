@@ -36,17 +36,22 @@ namespace Team_Manager
         private async void OnListaZawodnikowClicked(object sender, EventArgs e)
         {
             //stad brac nawigacja jak nie dziala
+            //daniel kocham cie za to<33
             var dbService = App.Services.GetRequiredService<LocalDbServices>();
             var listaZawodnikowPage = new KlubPages.ListaZawodnikow(dbService);
             await Navigation.PushAsync(listaZawodnikowPage);
         }
         private async void OnHarmonogramClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KlubPages.Harmonogram());
+            var dbService = App.Services.GetRequiredService<LocalDbServices>();
+            var harmonogramPage = new KlubPages.Harmonogram(dbService);
+            await Navigation.PushAsync(harmonogramPage);
         }
         private async void OnObecnoscClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new KlubPages.Obecnosc());
+            var dbService = App.Services.GetRequiredService<LocalDbServices>();
+            var obecnoscPage = new KlubPages.Obecnosc(dbService);
+            await Navigation.PushAsync(obecnoscPage);
         }
     }
 }

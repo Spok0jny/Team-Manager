@@ -16,6 +16,8 @@ namespace Team_Manager
             _connection = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, DB_NAME));
             _connection.CreateTableAsync<Zawodnicy>();
             _connection.CreateTableAsync<Wydarzenia>();
+            _connection.CreateTableAsync<Harmonogram>();
+            _connection.CreateTableAsync<Frekwencja>();
         }
 
         //zwraca listę wszystkich zawodników
@@ -76,6 +78,44 @@ namespace Team_Manager
         public async Task DeleteWydarzenie(Wydarzenia wydarzenie)
         {
             await _connection.DeleteAsync(wydarzenie);
+        }
+
+        // Zwraca listę harmonogramów
+        public async Task<List<Harmonogram>> GetHarmonogram()
+        {
+            return await _connection.Table<Harmonogram>().ToListAsync();
+        }
+
+      
+
+        // Tworzy harmonogram
+        public async Task CreateHarmonogram(Harmonogram harmonogram)
+        {
+            await _connection.InsertAsync(harmonogram);
+        }
+
+
+        // Usuwa harmonogram
+        public async Task DeleteHarmonogram(Harmonogram harmonogram)
+        {
+            await _connection.DeleteAsync(harmonogram);
+        }
+
+        public async Task CreateFrekwencja(Frekwencja frekwencja)
+        {
+            await _connection.InsertAsync(frekwencja);
+        }
+
+        public async Task<List<Frekwencja>> GetFrekwencjaByHarmonogramId(int harmonogramId)
+        {
+            return await _connection.Table<Frekwencja>().Where(f => f.HarmonogramId == harmonogramId).ToListAsync();
+        }
+
+        public async Task<Frekwencja> GetFrekwencjaByZawodnikAndHarmonogram(string zawodnikImieNazwisko, int harmonogramId)
+        {
+            return await _connection.Table<Frekwencja>()
+                                     .Where(f => f.ZawodnikImieNazwisko == zawodnikImieNazwisko && f.HarmonogramId == harmonogramId)
+                                     .FirstOrDefaultAsync();
         }
 
 
