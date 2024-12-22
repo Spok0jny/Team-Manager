@@ -43,22 +43,27 @@
 
     <TabBar>
         <ShellContent
+            Icon="home.png"
             Title="Strona główna"
+            
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage" />
 
         <ShellContent
+            Icon="club.png"
             Title="Klub"
             ContentTemplate="{DataTemplate local:Klub}"
             Route="Klub"
             x:Name="KlubTab" />
 
         <ShellContent
+            Icon="admin.png"
             Title="Admin"
             ContentTemplate="{DataTemplate local:Admin}"
             Route="Admin" />
 
         <ShellContent
+            Icon="settings.png"
             Title="Ustawienia"
             ContentTemplate="{DataTemplate local:Ustawienia}"
             Route="Ustawienia" />
