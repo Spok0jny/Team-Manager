@@ -3,15 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Team_Manager.Admin"
              Title="Admin">
-    <VerticalStackLayout>
-        <Entry x:Name="TytulWydarzeniaEntry" Text="" Placeholder="Tytuł wydarzenia"></Entry>
-        <Image x:Name="PhotoImage" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
-        <Button Text="Upload Photo"
+    <ScrollView>
+    <VerticalStackLayout Padding="20">
+            
+                <Entry x:Name="TytulWydarzeniaEntry" Text="" Placeholder="Tytuł wydarzenia"></Entry>
+        <Image x:Name="PhotoImage"  Aspect="AspectFit"/>
+        <Button Text="Dodaj zdjęcie"
                     Clicked="OnUploadPhotoClicked" />
-        <Entry x:Name="AutorEntry" Text="" Placeholder="Autor"></Entry>
+            <Frame BackgroundColor="#404040">
+            <Editor x:Name="ArtykulText" Placeholder="Wprowadź tekst artykułu" HeightRequest="200"></Editor>
+            </Frame>
+            <Entry x:Name="AutorEntry" Text="" Placeholder="Autor"></Entry>
         <DatePicker x:Name="DataEntry"
                         Date="{Binding SelectedDate}"
                         Format="yyyy-MM-dd" />
         <Button Text="Dodaj wydarzenie" Clicked="OnAddEventClicked"></Button>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

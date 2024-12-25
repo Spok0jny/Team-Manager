@@ -15,8 +15,8 @@
             <Style TargetType="TabBar">
                 <Setter Property="Shell.BackgroundColor" Value="#0a111c"></Setter>
                 <Setter Property="Shell.UnselectedColor" Value="Yellow"></Setter>
-                <Setter Property="Shell.TitleColor" Value="White"></Setter>
-                <Setter Property="Shell.ForegroundColor" Value="White"></Setter>
+                <Setter Property="Shell.TitleColor" Value="Green"></Setter>
+                <Setter Property="Shell.ForegroundColor" Value="Red"></Setter>
                 <!-- zmienić jakoś font size w tabbarze, bo jak się wchodzi na stronę główną to animacja powiększa czcionkę i się tekst wylewa, jeśli nie ma styli na dolnym tabbarze, a są tylko na górnym to trzeba w targetType dać wartość na shell, a potem znowu na TabBar -->
 
             </Style>
