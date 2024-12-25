@@ -6,50 +6,143 @@
              BackgroundColor="#1E1E2E">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
+        <VerticalStackLayout Padding="20" Spacing="30">
 
-           
-            <Label 
-                Text="Osiągnięcia Klubu"
-                FontSize="24"
-                FontAttributes="Bold"
-                TextColor="Gold"
-                HorizontalOptions="Center" />
+            <!-- Pierwszy blok: Osiągnięcia Klubu -->
+            <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="20">
+                    <Label
+                        Text="Osiągnięcia Klubu 🏆"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        HorizontalOptions="Center" />
 
-            <CollectionView x:Name="KlubOsiagnieciaView" ItemsSource="{Binding OsiagnieciaKlubu}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="10" Margin="5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Tytul}" FontSize="16" TextColor="White" />
-                                <Label Text="{Binding Data}" FontSize="14" TextColor="#FFD700" />
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    <CollectionView ItemsSource="{Binding OsiagnieciaDruzyny}" HeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#3E3E50" CornerRadius="10" Padding="10" Margin="5">
+                                    <VerticalStackLayout Spacing="10">
+                                        <Label
+                                            Text="{Binding NazwaOsiagniecia}"
+                                            FontSize="16"
+                                            FontAttributes="Bold"
+                                            TextColor="Gold"
+                                            HorizontalOptions="Center" />
 
-     
-            <Label 
-                Text="Osiągnięcia Zawodników"
-                FontSize="24"
-                FontAttributes="Bold"
-                TextColor="Gold"
-                HorizontalOptions="Center" />
+                                        <Label
+                                            Text="{Binding DataOsiagniecia, StringFormat='{0:dd/MM/yyyy}'}"
+                                            FontSize="14"
+                                            TextColor="White"
+                                            HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-            <CollectionView x:Name="ZawodnicyOsiagnieciaView" ItemsSource="{Binding OsiagnieciaZawodnikow}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="10" Margin="5">
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Tytul}" FontSize="16" TextColor="White" />
-                                <Label Text="{Binding Zawodnik}" FontSize="14" TextColor="#FFD700" />
-                            </VerticalStackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                   
+                    <VerticalStackLayout Spacing="15">
+                        <Entry
+                            x:Name="noweOsiagniecieEntry"
+                            Placeholder="Wpisz nowe osiągnięcie"
+                            FontSize="16"
+                            TextColor="White"
+                            BackgroundColor="#3E3E50" />
+
+                        <DatePicker
+                            x:Name="dataOsiagnieciaPicker"
+                            Date="{Binding DataOsiagniecia}"
+                            Format="dd/MM/yyyy"
+                            BackgroundColor="#3E3E50"
+                            TextColor="White" />
+
+                        <Button
+                            Text="Dodaj osiągnięcie"
+                            FontSize="16"
+                            TextTransform="Uppercase"
+                            BackgroundColor="#FFD700"
+                            TextColor="#1E1E2E"
+                            CornerRadius="20"
+                            Padding="10"
+                            HorizontalOptions="Center"
+                            Clicked="OnDodajOsiagniecieClicked" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Drugi blok: Osiągnięcia Zawodników -->
+            <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="20">
+                    <Label
+                        Text="Osiągnięcia Zawodników 🏆"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        HorizontalOptions="Center" />
+
+                    
+                    <Picker x:Name="zawodnikPicker" 
+                            Title="Wybierz zawodnika"
+                            BackgroundColor="#3E3E50"
+                            TextColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            SelectedIndexChanged="OnZawodnikPickerSelectedIndexChanged"/>
+
+                    <CollectionView ItemsSource="{Binding OsiagnieciaZawodnika}" HeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="#3E3E50" CornerRadius="10" Padding="10" Margin="5">
+                                    <VerticalStackLayout Spacing="10">
+                                        <Label
+                                            Text="{Binding NazwaOsiagniecia}"
+                                            FontSize="16"
+                                            FontAttributes="Bold"
+                                            TextColor="Gold"
+                                            HorizontalOptions="Center" />
+
+                                        <Label
+                                            Text="{Binding DataOsiagniecia, StringFormat='{0:dd/MM/yyyy}'}"
+                                            FontSize="14"
+                                            TextColor="White"
+                                            HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    
+                    <VerticalStackLayout Spacing="15">
+                        <Entry
+                            x:Name="zawodnikOsiagniecieEntry"
+                            Placeholder="Wpisz osiągnięcie zawodnika"
+                            FontSize="16"
+                            TextColor="White"
+                            BackgroundColor="#3E3E50"  />
+
+                        <DatePicker
+                            x:Name="zawodnikDataOsiagnieciaPicker"
+                            Date="{Binding DataOsiagniecia}"
+                            Format="dd/MM/yyyy"
+                            BackgroundColor="#3E3E50"
+                            TextColor="White" />
+
+                        <Button
+                            Text="Dodaj osiągnięcie"
+                            FontSize="16"
+                            TextTransform="Uppercase"
+                            BackgroundColor="#FFD700"
+                            TextColor="#1E1E2E"
+                            CornerRadius="20"
+                            Padding="10"
+                            HorizontalOptions="Center"
+                            Clicked="OnDodajZawodnikOsiagniecieClicked" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

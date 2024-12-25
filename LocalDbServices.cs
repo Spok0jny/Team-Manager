@@ -18,6 +18,8 @@ namespace Team_Manager
             _connection.CreateTableAsync<Wydarzenia>();
             _connection.CreateTableAsync<Harmonogram>();
             _connection.CreateTableAsync<Frekwencja>();
+            _connection.CreateTableAsync<OsiagnieciaDruzyny>();
+            _connection.CreateTableAsync<OsiagnieciaZawodnika>();
         }
 
         //zwraca listę wszystkich zawodników
@@ -117,8 +119,26 @@ namespace Team_Manager
                                      .Where(f => f.ZawodnikImieNazwisko == zawodnikImieNazwisko && f.HarmonogramId == harmonogramId)
                                      .FirstOrDefaultAsync();
         }
+        //osiagniecia druzyny
+        public async Task<List<OsiagnieciaDruzyny>> GetOsiagnieciaDruzyny()
+        {
+            return await Task.Run(() => _connection.Table<OsiagnieciaDruzyny>().ToListAsync());
+        }
 
+        public async Task CreateOsiagniecieDruzyny(OsiagnieciaDruzyny osiagniecie)
+        {
+            await Task.Run(() => _connection.InsertAsync(osiagniecie));
+        }
+        //osiagiecia posczegolnego zawodnika
+        public async Task<List<OsiagnieciaZawodnika>> GetOsiagnieciaZawodnika(int zawodnikId)
+        {
+            return await Task.Run(() => _connection.Table<OsiagnieciaZawodnika>().Where(o => o.ZawodnikId == zawodnikId).ToListAsync());
+        }
 
+        public async Task CreateOsiagniecieZawodnika(OsiagnieciaZawodnika osiagniecie)  
+        {
+            await Task.Run(() => _connection.InsertAsync(osiagniecie));
+        }
 
 
     }

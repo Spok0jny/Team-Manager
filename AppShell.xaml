@@ -8,7 +8,7 @@
     Shell.FlyoutBehavior="Disabled"
     Title="Team_Manager">
 
-    <Shell.FlyoutContent>
+    <!--<Shell.FlyoutContent>
         <StackLayout x:Name="FlyoutMenu" IsVisible="False" Padding="20">
             <Button
                 Style="{StaticResource ButtonMargin}"
@@ -39,7 +39,7 @@
 
 
         </StackLayout>
-    </Shell.FlyoutContent>
+    </Shell.FlyoutContent>-->
 
     <TabBar>
         <ShellContent
