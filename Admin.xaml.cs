@@ -5,7 +5,7 @@ public partial class Admin : ContentPage
     private readonly LocalDbServices _dbService;
     private byte[] _selectedPhoto; 
 
-    public Admin(LocalDbServices dbService)
+    public  Admin(LocalDbServices dbService)
     {
         InitializeComponent();
         _dbService = dbService; 
