@@ -67,4 +67,9 @@ public partial class ListaZawodnikow : ContentPage
             _zawodnicy.Add(zawodnik);
         }
     }
+
+    private void OnFrameTapped(object sender, EventArgs e)
+    {
+        DisplayAlert("ok", "ok", "ok");
+    }
 }

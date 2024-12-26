@@ -20,13 +20,20 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="10" Margin="5">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnFrameTapped" />
+                            </Frame.GestureRecognizers>
                             <Grid ColumnDefinitions="0.2*, 0.2*, 0.4*, 0.2*">
-                                <Label Grid.Column="0" Text="{Binding Numer}" TextColor="White" FontSize="14" />
-                                <Label Grid.Column="1" Text="{Binding Pozycja}" TextColor="White" FontSize="14" />
-                                <Label Grid.Column="2" Text="{Binding ImieNazwisko}" TextColor="Gold" FontSize="14" FontAttributes="Bold" />
-                                <Label Grid.Column="3" Text="{Binding KoniecKontraktu}" TextColor="#FFD700" FontSize="12" />
+                                <Label Grid.Column="0" Text="{Binding Numer}" TextColor="White" FontSize="14" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="1" Text="{Binding Pozycja}" TextColor="White" FontSize="14" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="2" Text="{Binding ImieNazwisko}" TextColor="Gold" FontSize="14" FontAttributes="Bold" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="3" Text="{Binding KoniecKontraktu}" TextColor="#FFD700" FontSize="12" VerticalTextAlignment="Center" />
                             </Grid>
                         </Frame>
+
+
+
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
