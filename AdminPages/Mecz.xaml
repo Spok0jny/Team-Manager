@@ -13,15 +13,94 @@
                         <Label Text=" VS " />
                         <Entry x:Name="druzynaDrugaEntry" Text="" Placeholder="Druzyna 2"/>
                     </StackLayout>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        
+                        
+                        <!-- left side -->
+                        <StackLayout>
+                            <Label Text="Czy moja druzyna?"/>
+                            <CheckBox CheckedChanged="leftCheckBoxChanged"/>
+                            <Picker x:Name="leftZawodnikPicker" 
+                            Title="Wybierz zawodnika"
+                            BackgroundColor="#3E3E50"
+                            TextColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            SelectedIndexChanged="OnLeftZawodnikPickerSelectedIndexChanged"
+                            IsVisible="false"/>
+
+                            <Entry 
+                                Text="" 
+                                Placeholder="Zawodnik" 
+                                BackgroundColor="#3E3E50"
+                                TextColor="White"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="true"/>
+
+                            <RadioButton GroupName="actionLeft" Value="goal" Content="Gol"/>
+                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta"/>
+                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Zółta kartka"/>
+                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka"/>
+
+                            <Button Text="Dodaj"/>
+
+                            <ScrollView HeightRequest="120">
+                            </ScrollView>
+
+                            <Entry x:Name="leftMinuteEntry"
+                                Placeholder="Wpisz minutę" 
+                                Keyboard="Numeric"/>
+                        </StackLayout>
+                        
+                        
+                        <!-- right side -->
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Czy moja druzyna?"/>
+                            <CheckBox CheckedChanged="rightCheckBoxChanged"/>
+                            <Picker x:Name="rightZawodnikPicker" 
+                            Title="Wybierz zawodnika"
+                            BackgroundColor="#3E3E50"
+                            TextColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            SelectedIndexChanged="OnRightZawodnikPickerSelectedIndexChanged" 
+                            IsVisible="false"/>
+
+                            <Entry 
+                            Text="" 
+                            Placeholder="Zawodnik" 
+                            BackgroundColor="#3E3E50"
+                            TextColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="true"/>
+
+                            <RadioButton GroupName="actionLeft" Value="goal" Content="Gol"/>
+                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta"/>
+                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Zółta kartka"/>
+                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka"/>
+
+                            <Button Text="Dodaj"/>
+
+                            <ScrollView HeightRequest="120">
+
+                            </ScrollView>
+
+                            <Entry x:Name="rightMinuteEntry"    
+                                Placeholder="Wpisz minutę"
+                                Keyboard="Numeric" 
+                                />
+                        </StackLayout>
+
+                    </Grid>
+                    
                     <DatePicker x:Name="DataEntry"
                     Date="{Binding SelectedDate}"
                     Format="yyyy-MM-dd" />
-                    <Picker x:Name="zawodnikPicker" 
-                    Title="Wybierz zawodnika"
-                    BackgroundColor="#3E3E50"
-                    TextColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    SelectedIndexChanged="OnZawodnikPickerSelectedIndexChanged"/>
+                    
                     <Button Text="Dodaj mecz" Clicked="OnAddEventClicked"></Button>
                 </StackLayout>
             </Frame>
