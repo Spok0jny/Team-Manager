@@ -20,6 +20,7 @@ namespace Team_Manager
             _connection.CreateTableAsync<Frekwencja>();
             _connection.CreateTableAsync<OsiagnieciaDruzyny>();
             _connection.CreateTableAsync<OsiagnieciaZawodnika>();
+            _connection.CreateTableAsync<Mecze>();
         }
 
         //zwraca listę wszystkich zawodników
@@ -144,5 +145,96 @@ namespace Team_Manager
         {
             await _connection.InsertAsync(Mecz);
         }
+
+        public async Task CreateAction(przebiegMeczu Akcja)
+        {
+            await _connection.InsertAsync(Akcja);
+        }
+
+        public async Task<int> GetCountMecze()
+        {
+            var listaMeczy = await _connection.Table<Mecze>().ToListAsync();
+            return listaMeczy.Count;
+        }
+
+        public async Task UpdateBramki(int zawodnikId, int noweBramki)
+        {
+            var zawodnik = await _connection.Table<Zawodnicy>().Where(z => z.Id == zawodnikId).FirstOrDefaultAsync();
+
+            if (zawodnik != null)
+            {
+                zawodnik.Bramki += noweBramki;
+
+                await _connection.UpdateAsync(zawodnik);
+            }
+            else
+            {
+                Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
+            }
+        }
+
+        public async Task UpdateAsysty(int zawodnikId, int noweAsysty)
+        {
+            
+            var zawodnik = await _connection.Table<Zawodnicy>().Where(z => z.Id == zawodnikId).FirstOrDefaultAsync();
+
+            if (zawodnik != null)
+            {
+                
+                zawodnik.Asysty += noweAsysty;
+
+                
+                await _connection.UpdateAsync(zawodnik);
+            }
+            else
+            {
+                
+                Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
+            }
+        }
+
+        public async Task UpdateZolteKartki(int zawodnikId, int noweZolteKartki)
+        {
+           
+            var zawodnik = await _connection.Table<Zawodnicy>().Where(z => z.Id == zawodnikId).FirstOrDefaultAsync();
+
+            if (zawodnik != null)
+            {
+                
+                zawodnik.ZolteKartki += noweZolteKartki;
+
+                
+                await _connection.UpdateAsync(zawodnik);
+            }
+            else
+            {
+              
+                Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
+            }
+        }
+
+        public async Task UpdateCzerwoneKartki(int zawodnikId, int noweCzerwoneKartki)
+        {
+            
+            var zawodnik = await _connection.Table<Zawodnicy>().Where(z => z.Id == zawodnikId).FirstOrDefaultAsync();
+
+            if (zawodnik != null)
+            {
+                
+                zawodnik.CzerwoneKartki += noweCzerwoneKartki;
+
+                
+                await _connection.UpdateAsync(zawodnik);
+            }
+            else
+            {
+                
+                Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
+            }
+        }
+
+
+
+
     }
 }

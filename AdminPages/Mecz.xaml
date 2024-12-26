@@ -25,7 +25,7 @@
                         <!-- left side -->
                         <StackLayout>
                             <Label Text="Czy moja druzyna?"/>
-                            <CheckBox CheckedChanged="leftCheckBoxChanged"/>
+                            <CheckBox x:Name="leftCheckBox" CheckedChanged="leftCheckBoxChanged"/>
                             <Picker x:Name="leftZawodnikPicker" 
                             Title="Wybierz zawodnika"
                             BackgroundColor="#3E3E50"
@@ -34,7 +34,7 @@
                             SelectedIndexChanged="OnLeftZawodnikPickerSelectedIndexChanged"
                             IsVisible="false"/>
 
-                            <Entry 
+                            <Entry  x:Name="leftZawodnikName"
                                 Text="" 
                                 Placeholder="Zawodnik" 
                                 BackgroundColor="#3E3E50"
@@ -42,26 +42,31 @@
                                 HorizontalOptions="FillAndExpand"
                                 IsVisible="true"/>
 
-                            <RadioButton GroupName="actionLeft" Value="goal" Content="Gol"/>
-                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta"/>
-                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Zółta kartka"/>
-                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka"/>
+                            <RadioButton GroupName="actionLeft" IsChecked="True" Value="goal" Content="Gol" x:Name="leftGoalRadioButton"/>
+                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta" x:Name="leftAsistRadioButton"/>
+                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Żółta kartka" x:Name="leftYellowCardRadioButton"/>
+                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka" x:Name="leftRedCardRadioButton"/>
 
-                            <Button Text="Dodaj"/>
-
-                            <ScrollView HeightRequest="120">
-                            </ScrollView>
 
                             <Entry x:Name="leftMinuteEntry"
                                 Placeholder="Wpisz minutę" 
                                 Keyboard="Numeric"/>
+
+                            <Button 
+                                Text="Dodaj"
+                                Clicked="leftAddButton"/>
+
+                            <ScrollView HeightRequest="120">
+                            </ScrollView>
+
+                            
                         </StackLayout>
                         
                         
                         <!-- right side -->
                         <StackLayout Grid.Column="1">
                             <Label Text="Czy moja druzyna?"/>
-                            <CheckBox CheckedChanged="rightCheckBoxChanged"/>
+                            <CheckBox x:Name="rightCheckBox" CheckedChanged="rightCheckBoxChanged"/>
                             <Picker x:Name="rightZawodnikPicker" 
                             Title="Wybierz zawodnika"
                             BackgroundColor="#3E3E50"
@@ -70,7 +75,7 @@
                             SelectedIndexChanged="OnRightZawodnikPickerSelectedIndexChanged" 
                             IsVisible="false"/>
 
-                            <Entry 
+                            <Entry x:Name="rightZawodnikName"
                             Text="" 
                             Placeholder="Zawodnik" 
                             BackgroundColor="#3E3E50"
@@ -78,21 +83,26 @@
                             HorizontalOptions="FillAndExpand"
                             IsVisible="true"/>
 
-                            <RadioButton GroupName="actionLeft" Value="goal" Content="Gol"/>
-                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta"/>
-                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Zółta kartka"/>
-                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka"/>
-
-                            <Button Text="Dodaj"/>
-
-                            <ScrollView HeightRequest="120">
-
-                            </ScrollView>
+                            <RadioButton GroupName="actionRight" IsChecked="True" Value="goal" Content="Gol" x:Name="rightGoalRadioButton"/>
+                            <RadioButton GroupName="actionRight" Value="asist" Content="Asysta" x:Name="rightAsistRadioButton"/>
+                            <RadioButton GroupName="actionRight" Value="yellowCard" Content="Zółta kartka" x:Name="rightYellowCardRadioButton"/>
+                            <RadioButton GroupName="actionRight" Value="redCard" Content="Czerwona kartka" x:Name="rightRedCardRadioButton"/>
 
                             <Entry x:Name="rightMinuteEntry"    
                                 Placeholder="Wpisz minutę"
                                 Keyboard="Numeric" 
                                 />
+
+                            <Button 
+                                Text="Dodaj"
+                                Clicked="rightAddButton"
+                                />
+
+                            <ScrollView HeightRequest="120">
+
+                            </ScrollView>
+
+                            
                         </StackLayout>
 
                     </Grid>

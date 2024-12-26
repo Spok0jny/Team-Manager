@@ -35,16 +35,16 @@ namespace Team_Manager
         public string KoniecKontraktu { get; set; }
 
         [Column("bramki")]
-        public int Bramki { get; set; }
+        public int Bramki { get; set; } = 0;
         
         [Column("asysty")]
-        public int Asysty { get; set; }
-        
+        public int Asysty { get; set; } = 0;
+
         [Column("zolteKartki")]
-        public int ZolteKartki { get; set; }
-        
+        public int ZolteKartki { get; set; } = 0;
+
         [Column("czerwoneKartki")]
-        public int CzerwoneKartki { get; set; }
+        public int CzerwoneKartki { get; set; } = 0;
 
         public string ImieNazwisko => $"{Imie} {Nazwisko}";
 
