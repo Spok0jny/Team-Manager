@@ -32,7 +32,19 @@ namespace Team_Manager
         public int Wiek { get; set; } 
 
         [Column("koniec_kontraktu")]
-        public string KoniecKontraktu { get; set; } 
+        public string KoniecKontraktu { get; set; }
+
+        [Column("bramki")]
+        public int Bramki { get; set; }
+        
+        [Column("asysty")]
+        public int Asysty { get; set; }
+        
+        [Column("zolteKartki")]
+        public int ZolteKartki { get; set; }
+        
+        [Column("czerwoneKartki")]
+        public int CzerwoneKartki { get; set; }
 
         public string ImieNazwisko => $"{Imie} {Nazwisko}";
 

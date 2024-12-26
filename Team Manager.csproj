@@ -81,6 +81,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AdminPages\Mecz.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AdminPages\Wydarzenie.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="KlubPages\Harmonogram.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

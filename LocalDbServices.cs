@@ -140,6 +140,9 @@ namespace Team_Manager
             await Task.Run(() => _connection.InsertAsync(osiagniecie));
         }
 
-
+        public async Task CreateMecz(Mecze Mecz)
+        {
+            await _connection.InsertAsync(Mecz);
+        }
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Team_Manager.AdminPages.Wydarzenie"
+             Title="Wydarzenie">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Frame BackgroundColor="#2E2E40" Padding="20">
+                <StackLayout Spacing="20">
+                    <Label Text="Dodaj wydarzenie" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"></Label>
+                    <Entry x:Name="TytulWydarzeniaEntry" Text="" Placeholder="Tytuł wydarzenia"></Entry>
+                    <Image x:Name="PhotoImage"  Aspect="AspectFit"/>
+                    <Button Text="Dodaj zdjęcie"
+    Clicked="OnUploadPhotoClicked" />
+                    <Frame BackgroundColor="#404040">
+                        <Editor x:Name="ArtykulText" Placeholder="Wprowadź tekst artykułu" HeightRequest="200"></Editor>
+                    </Frame>
+                    <Entry x:Name="AutorEntry" Text="" Placeholder="Autor"></Entry>
+                    <DatePicker x:Name="DataEntry"
+        Date="{Binding SelectedDate}"
+        Format="yyyy-MM-dd" />
+                    <Button Text="Dodaj wydarzenie" Clicked="OnAddEventClicked"></Button>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

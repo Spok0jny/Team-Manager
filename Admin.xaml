@@ -7,23 +7,62 @@
              >
     <ScrollView>
         <VerticalStackLayout Padding="20">
-            <Frame BackgroundColor="#2E2E40" Padding="20">
-    <StackLayout Spacing="20">
-            <Label Text="Dodaj wydarzenie" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"></Label>
-                <Entry x:Name="TytulWydarzeniaEntry" Text="" Placeholder="Tytuł wydarzenia"></Entry>
-        <Image x:Name="PhotoImage"  Aspect="AspectFit"/>
-        <Button Text="Dodaj zdjęcie"
-                    Clicked="OnUploadPhotoClicked" />
-            <Frame BackgroundColor="#404040">
-            <Editor x:Name="ArtykulText" Placeholder="Wprowadź tekst artykułu" HeightRequest="200"></Editor>
+
+            <Grid Padding="0, 15" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                <Frame BackgroundColor="#2E2E40" CornerRadius="20" Padding="0" Grid.Column="0" WidthRequest="200" HeightRequest="200" VerticalOptions="FillAndExpand">
+                <Grid>
+                        <Label Text="Dodaj wydarzenie"
+                   FontSize="16"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="10,5"
+                   BackgroundColor="#2E2E40"
+                   Grid.Row="0" Grid.Column="0" />
+                        <Image Source="player_icon.png"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   Grid.Row="0" Grid.Column="1" />
+                        <Button BackgroundColor="Transparent"
+                    CornerRadius="0"
+                    Padding="0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Clicked="onWydarzenieButtonClicked"
+                    Grid.Row="0" Grid.Column="0" />
+                </Grid>
             </Frame>
-            <Entry x:Name="AutorEntry" Text="" Placeholder="Autor"></Entry>
-        <DatePicker x:Name="DataEntry"
-                        Date="{Binding SelectedDate}"
-                        Format="yyyy-MM-dd" />
-        <Button Text="Dodaj wydarzenie" Clicked="OnAddEventClicked"></Button>
-    </StackLayout>
-        </Frame>
-    </VerticalStackLayout>
+
+            <Frame BackgroundColor="#2E2E40" CornerRadius="20" Padding="0" Grid.Column="1" WidthRequest="200" HeightRequest="200" VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <Label Text="Dodaj mecz"
+                           FontSize="16"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"
+                           Padding="10,5"
+                           BackgroundColor="#2E2E40"
+                           Grid.Row="0" Grid.Column="0" />
+                                <Image Source="player_icon.png"
+                           HorizontalOptions="End"
+                           VerticalOptions="End"
+                           WidthRequest="100"
+                           HeightRequest="100"
+                           Grid.Row="0" Grid.Column="1" />
+                                <Button BackgroundColor="Transparent"
+                            CornerRadius="0"
+                            Padding="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            Clicked="onMeczButtonClicked"
+                            Grid.Row="0" Grid.Column="0" />
+                    </Grid>
+                </Frame>
+            </Grid>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Team_Manager.AdminPages.Mecz"
+             Title="Mecz">
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Frame BackgroundColor="#2E2E40" Padding="20">
+                <StackLayout Spacing="20">
+                    <Label Text="Dodaj mecz" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Entry x:Name="druzynaPierwszaEntry" Text="" Placeholder="Druzyna 1"/>
+                        <Label Text=" VS " />
+                        <Entry x:Name="druzynaDrugaEntry" Text="" Placeholder="Druzyna 2"/>
+                    </StackLayout>
+                    <DatePicker x:Name="DataEntry"
+                    Date="{Binding SelectedDate}"
+                    Format="yyyy-MM-dd" />
+                    <Picker x:Name="zawodnikPicker" 
+                    Title="Wybierz zawodnika"
+                    BackgroundColor="#3E3E50"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    SelectedIndexChanged="OnZawodnikPickerSelectedIndexChanged"/>
+                    <Button Text="Dodaj mecz" Clicked="OnAddEventClicked"></Button>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
