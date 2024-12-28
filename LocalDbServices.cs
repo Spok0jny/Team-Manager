@@ -1,6 +1,8 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,7 @@ namespace Team_Manager
             _connection.CreateTableAsync<OsiagnieciaDruzyny>();
             _connection.CreateTableAsync<OsiagnieciaZawodnika>();
             _connection.CreateTableAsync<Mecze>();
+            _connection.CreateTableAsync<przebiegMeczu>();
         }
 
         //zwraca listę wszystkich zawodników
@@ -232,6 +235,56 @@ namespace Team_Manager
                 Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
             }
         }
+
+        public async Task<List<przebiegMeczu>> GetAkcjeWithDetails(int matchId, int teamId)
+        {
+            // Pobranie akcji meczu dla danego matchId i teamId
+            var akcje = await _connection.Table<przebiegMeczu>()
+                                          .Where(a => a.idMeczu == matchId && a.ktoraDruzyna == teamId)
+                                          .OrderBy(a => a.ktoraMinuta)
+                                          .ToListAsync();
+
+            // Pobieramy wszystkie unikalne idZawodnika z akcji
+            var zawodnicyIds = akcje
+                                .Where(a => a.idZawodnika.HasValue)
+                                .Select(a => a.idZawodnika.Value)
+                                .Distinct()
+                                .ToList();
+
+            if (zawodnicyIds.Any())
+            {
+                // Pobieramy zawodników, którzy mają idZawodnika powiązane z akcjami
+                var zawodnicy = await _connection.Table<Zawodnicy>()
+                                                 .Where(z => zawodnicyIds.Contains(z.Id))
+                                                 .ToListAsync();
+
+                // Tworzymy słownik, gdzie klucz to Id zawodnika, a wartość to pełne imię i nazwisko
+                var zawodnicyDict = zawodnicy.ToDictionary(z => z.Id, z => z.ImieNazwisko);
+
+                // Aktualizujemy nazwiska zawodników w akcji
+                foreach (var akcja in akcje)
+                {
+                    if (akcja.idZawodnika.HasValue && zawodnicyDict.ContainsKey(akcja.idZawodnika.Value))
+                    {
+                        akcja.nazwaZawodnika = zawodnicyDict[akcja.idZawodnika.Value]; // Ustawiamy pełne imię i nazwisko
+                    }
+                }
+            }
+
+            // Zwracamy listę akcji, zaktualizowaną o pełne imiona zawodników
+            return akcje;
+        }
+
+
+
+
+
+        
+
+
+
+
+
 
 
 

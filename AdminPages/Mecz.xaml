@@ -56,10 +56,33 @@
                                 Text="Dodaj"
                                 Clicked="leftAddButton"/>
 
-                            <ScrollView HeightRequest="120">
-                            </ScrollView>
+                            <CollectionView x:Name="LeftActionsCollection"
+                                HeightRequest="120"
+                                ItemsSource="{Binding LeftActions}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal" Padding="5">
+                                            <Label Text="{Binding nazwaZawodnika}" 
+                                               TextColor="White"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding akcja}" 
+                                               TextColor="White"
+                                               VerticalOptions="Center" 
+                                               Margin="10,0,0,0"
+                                               HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding ktoraMinuta}" 
+                                               TextColor="White"
+                                               VerticalOptions="Center" 
+                                               Margin="10,0,0,0"
+                                               HorizontalOptions="FillAndExpand"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
 
-                            
+
+
                         </StackLayout>
                         
                         
@@ -98,11 +121,32 @@
                                 Clicked="rightAddButton"
                                 />
 
-                            <ScrollView HeightRequest="120">
+                            <CollectionView x:Name="RightActionsCollection"
+                                HeightRequest="120"
+                                ItemsSource="{Binding RightActions}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal" Padding="5">
+                                            <Label Text="{Binding nazwaZawodnika}" 
+                                               TextColor="White"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding akcja}" 
+                                               TextColor="White"
+                                               VerticalOptions="Center" 
+                                               Margin="10,0,0,0"
+                                               HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding ktoraMinuta}" 
+                                               TextColor="White"
+                                               VerticalOptions="Center" 
+                                               Margin="10,0,0,0"
+                                               HorizontalOptions="FillAndExpand"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
 
-                            </ScrollView>
 
-                            
                         </StackLayout>
 
                     </Grid>

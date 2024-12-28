@@ -47,7 +47,7 @@ namespace Team_Manager
         public string akcja { get; set; }
 
         [Column("idZawodnika")]
-        public int idZawodnika { get;set; }
+        public int? idZawodnika { get;set; }
 
         [Column("nazwaZawodnika")]
         public string nazwaZawodnika { get; set; }
