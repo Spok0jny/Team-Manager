@@ -18,10 +18,9 @@ public partial class ListaZawodnikow : ContentPage
 
     private async void zapiszButton_Clicked(object sender, EventArgs e)
     {
-        
         if (!string.IsNullOrWhiteSpace(imieEntry.Text) &&
             !string.IsNullOrWhiteSpace(nazwiskoEntry.Text) &&
-            !string.IsNullOrWhiteSpace(pozycjaEntry.Text) &&
+            pozycjaEntry.SelectedItem != null &&
             !string.IsNullOrWhiteSpace(numerEntry.Text) &&
             int.TryParse(wiekEntry.Text, out int wiek) &&
             int.TryParse(numerEntry.Text, out int numer))
@@ -29,7 +28,7 @@ public partial class ListaZawodnikow : ContentPage
             var nowyZawodnik = new Zawodnicy
             {
                 Numer = numer,
-                Pozycja = pozycjaEntry.Text,
+                Pozycja = pozycjaEntry.SelectedItem.ToString(),
                 Imie = imieEntry.Text,
                 Nazwisko = nazwiskoEntry.Text,
                 Wiek = wiek,
@@ -37,15 +36,15 @@ public partial class ListaZawodnikow : ContentPage
             };
 
             await _dbService.CreateZawodnik(nowyZawodnik);
-           
+
+    
             numerEntry.Text = string.Empty;
-            pozycjaEntry.Text = string.Empty;
+            pozycjaEntry.SelectedItem = null; 
             imieEntry.Text = string.Empty;
             nazwiskoEntry.Text = string.Empty;
             wiekEntry.Text = string.Empty;
             koniecKontraktuPicker.Date = DateTime.Now;
 
-           
             await WczytajListeZawodnikow();
         }
         else
@@ -54,7 +53,7 @@ public partial class ListaZawodnikow : ContentPage
         }
     }
 
-    
+
 
     private async Task WczytajListeZawodnikow()
     {

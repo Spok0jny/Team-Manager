@@ -33,7 +33,6 @@
 
 
 
-
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -42,7 +41,25 @@
             <VerticalStackLayout Spacing="10">
                 <Label Text="Dodaj Nowego Zawodnika" FontSize="18" FontAttributes="Bold" TextColor="Gold" />
                 <Entry x:Name="numerEntry" Placeholder="Numer zawodnika" Keyboard="Numeric" />
-                <Entry x:Name="pozycjaEntry" Placeholder="Pozycja" />
+                <Picker x:Name="pozycjaEntry" 
+                      SelectedItem="{Binding Pozycja}" 
+                       Title="Wybierz pozycję">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Napastnik</x:String>
+                            <x:String>Lewy skrzydłowy</x:String>
+                            <x:String>Prawy skrzydłowy</x:String>
+                            <x:String>Środkowy pomocnik</x:String>
+                            <x:String>Lewy pomocnik</x:String>
+                            <x:String>Prawy pomocnik</x:String>
+                            <x:String>Środkowy oborńca</x:String>
+                            <x:String>Lewy oborńca</x:String>
+                            <x:String>Prawy oborńca</x:String>
+                            <x:String>Bramkarz</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
                 <Entry x:Name="imieEntry" Placeholder="Imię" />
                 <Entry x:Name="nazwiskoEntry" Placeholder="Nazwisko" />
                 <Entry x:Name="wiekEntry" Placeholder="Wiek" Keyboard="Numeric" />
