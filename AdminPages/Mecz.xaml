@@ -2,161 +2,178 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Team_Manager.AdminPages.Mecz"
-             Title="Mecz">
+             Title="Mecz"
+             BackgroundColor="#1E1E2E">
     <ScrollView>
-        <VerticalStackLayout Padding="20">
-            <Frame BackgroundColor="#2E2E40" Padding="20">
-                <StackLayout Spacing="20">
-                    <Label Text="Dodaj mecz" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"></Label>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Entry x:Name="druzynaPierwszaEntry" Text="" Placeholder="Druzyna 1"/>
-                        <Label Text=" VS " />
-                        <Entry x:Name="druzynaDrugaEntry" Text="" Placeholder="Druzyna 2"/>
+        <VerticalStackLayout Padding="20" Spacing="30">
+            <Frame BackgroundColor="#2E2E40" CornerRadius="10" Padding="15" HasShadow="True">
+                <VerticalStackLayout Spacing="20">
+                    <Label 
+                        Text="Dodaj mecz" 
+                        FontAttributes="Bold" 
+                        FontSize="22" 
+                        TextColor="White" 
+                        HorizontalOptions="Center" />
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                        <Entry x:Name="druzynaPierwszaEntry" 
+                               Placeholder="Drużyna 1" 
+                               BackgroundColor="#3E3E50" 
+                               TextColor="White" 
+                               PlaceholderColor="#AAAAAA"
+                               WidthRequest="150" />
+                        <Label 
+                            Text="VS" 
+                            FontSize="16" 
+                            TextColor="White" 
+                            VerticalOptions="Center" />
+                        <Entry x:Name="druzynaDrugaEntry" 
+                               Placeholder="Drużyna 2" 
+                               BackgroundColor="#3E3E50" 
+                               TextColor="White" 
+                               PlaceholderColor="#AAAAAA"
+                               WidthRequest="150" />
                     </StackLayout>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        
-                        
-                        
-                        <!-- left side -->
-                        <StackLayout>
-                            <Label Text="Czy moja druzyna?"/>
-                            <CheckBox x:Name="leftCheckBox" CheckedChanged="leftCheckBoxChanged"/>
+                    <Grid ColumnDefinitions="*,*" Padding="0,10">
+                        <!-- Left Side -->
+                        <StackLayout Grid.Column="0" Spacing="15" Padding="10">
+                            <Label 
+                                Text="Czy moja drużyna?" 
+                                FontSize="16" 
+                                TextColor="White" />
+                            <CheckBox x:Name="leftCheckBox" CheckedChanged="leftCheckBoxChanged" />
                             <Picker x:Name="leftZawodnikPicker" 
-                            Title="Wybierz zawodnika"
-                            BackgroundColor="#3E3E50"
-                            TextColor="White"
-                            HorizontalOptions="FillAndExpand"
-                            SelectedIndexChanged="OnLeftZawodnikPickerSelectedIndexChanged"
-                            IsVisible="false"/>
-
-                            <Entry  x:Name="leftZawodnikName"
-                                Text="" 
-                                Placeholder="Zawodnik" 
-                                BackgroundColor="#3E3E50"
-                                TextColor="White"
-                                HorizontalOptions="FillAndExpand"
-                                IsVisible="true"/>
-
-                            <RadioButton GroupName="actionLeft" IsChecked="True" Value="goal" Content="Gol" x:Name="leftGoalRadioButton"/>
-                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta" x:Name="leftAsistRadioButton"/>
-                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Żółta kartka" x:Name="leftYellowCardRadioButton"/>
-                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka" x:Name="leftRedCardRadioButton"/>
-
-
-                            <Entry x:Name="leftMinuteEntry"
-                                Placeholder="Wpisz minutę" 
-                                Keyboard="Numeric"/>
-
+                                    Title="Wybierz zawodnika"
+                                    BackgroundColor="#3E3E50"
+                                    TextColor="White"
+                                    HorizontalOptions="FillAndExpand"
+                                    SelectedIndexChanged="OnLeftZawodnikPickerSelectedIndexChanged"
+                                    IsVisible="false" />
+                            <Entry x:Name="leftZawodnikName" 
+                                   Placeholder="Zawodnik" 
+                                   BackgroundColor="#3E3E50" 
+                                   TextColor="White" 
+                                   PlaceholderColor="#AAAAAA"
+                                   IsVisible="true" />
+                            <RadioButton GroupName="actionLeft" IsChecked="True" Value="goal" Content="Gol" x:Name="leftGoalRadioButton" TextColor="White" />
+                            <RadioButton GroupName="actionLeft" Value="asist" Content="Asysta" x:Name="leftAsistRadioButton" TextColor="White" />
+                            <RadioButton GroupName="actionLeft" Value="yellowCard" Content="Żółta kartka" x:Name="leftYellowCardRadioButton" TextColor="White" />
+                            <RadioButton GroupName="actionLeft" Value="redCard" Content="Czerwona kartka" x:Name="leftRedCardRadioButton" TextColor="White" />
+                            <Entry x:Name="leftMinuteEntry" 
+                                   Placeholder="Wpisz minutę" 
+                                   Keyboard="Numeric" 
+                                   BackgroundColor="#3E3E50" 
+                                   TextColor="White" 
+                                   PlaceholderColor="#AAAAAA" />
                             <Button 
-                                Text="Dodaj"
-                                Clicked="leftAddButton"/>
-
-                            <CollectionView x:Name="LeftActionsCollection"
-                                HeightRequest="120"
-                                ItemsSource="{Binding LeftActions}">
+                                Text="Dodaj" 
+                                BackgroundColor="#FFD700" 
+                                TextColor="#1E1E2E" 
+                                CornerRadius="20" 
+                                Padding="10" 
+                                Clicked="leftAddButton" />
+                            <CollectionView x:Name="LeftActionsCollection" 
+                                            HeightRequest="120" 
+                                            ItemsSource="{Binding LeftActions}" 
+                                            BackgroundColor="#2E2E40">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal" Padding="5">
                                             <Label Text="{Binding nazwaZawodnika}" 
-                                               TextColor="White"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="FillAndExpand"/>
+                                                   TextColor="White" 
+                                                   HorizontalOptions="FillAndExpand" />
                                             <Label Text="{Binding akcja}" 
-                                               TextColor="White"
-                                               VerticalOptions="Center" 
-                                               Margin="10,0,0,0"
-                                               HorizontalOptions="FillAndExpand"/>
+                                                   TextColor="White" 
+                                                   Margin="10,0,0,0" 
+                                                   HorizontalOptions="FillAndExpand" />
                                             <Label Text="{Binding ktoraMinuta}" 
-                                               TextColor="White"
-                                               VerticalOptions="Center" 
-                                               Margin="10,0,0,0"
-                                               HorizontalOptions="FillAndExpand"/>
+                                                   TextColor="White" 
+                                                   Margin="10,0,0,0" 
+                                                   HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
-
-
                         </StackLayout>
-                        
-                        
-                        <!-- right side -->
-                        <StackLayout Grid.Column="1">
-                            <Label Text="Czy moja druzyna?"/>
-                            <CheckBox x:Name="rightCheckBox" CheckedChanged="rightCheckBoxChanged"/>
+
+                        <!-- Right Side -->
+                        <StackLayout Grid.Column="1" Spacing="15" Padding="10">
+                            <Label 
+                                Text="Czy moja drużyna?" 
+                                FontSize="16" 
+                                TextColor="White" />
+                            <CheckBox x:Name="rightCheckBox" CheckedChanged="rightCheckBoxChanged" />
                             <Picker x:Name="rightZawodnikPicker" 
-                            Title="Wybierz zawodnika"
-                            BackgroundColor="#3E3E50"
-                            TextColor="White"
-                            HorizontalOptions="FillAndExpand"
-                            SelectedIndexChanged="OnRightZawodnikPickerSelectedIndexChanged" 
-                            IsVisible="false"/>
-
-                            <Entry x:Name="rightZawodnikName"
-                            Text="" 
-                            Placeholder="Zawodnik" 
-                            BackgroundColor="#3E3E50"
-                            TextColor="White"
-                            HorizontalOptions="FillAndExpand"
-                            IsVisible="true"/>
-
-                            <RadioButton GroupName="actionRight" IsChecked="True" Value="goal" Content="Gol" x:Name="rightGoalRadioButton"/>
-                            <RadioButton GroupName="actionRight" Value="asist" Content="Asysta" x:Name="rightAsistRadioButton"/>
-                            <RadioButton GroupName="actionRight" Value="yellowCard" Content="Zółta kartka" x:Name="rightYellowCardRadioButton"/>
-                            <RadioButton GroupName="actionRight" Value="redCard" Content="Czerwona kartka" x:Name="rightRedCardRadioButton"/>
-
-                            <Entry x:Name="rightMinuteEntry"    
-                                Placeholder="Wpisz minutę"
-                                Keyboard="Numeric" 
-                                />
-
+                                    Title="Wybierz zawodnika"
+                                    BackgroundColor="#3E3E50"
+                                    TextColor="White"
+                                    HorizontalOptions="FillAndExpand"
+                                    SelectedIndexChanged="OnRightZawodnikPickerSelectedIndexChanged"
+                                    IsVisible="false" />
+                            <Entry x:Name="rightZawodnikName" 
+                                   Placeholder="Zawodnik" 
+                                   BackgroundColor="#3E3E50" 
+                                   TextColor="White" 
+                                   PlaceholderColor="#AAAAAA"
+                                   IsVisible="true" />
+                            <RadioButton GroupName="actionRight" IsChecked="True" Value="goal" Content="Gol" x:Name="rightGoalRadioButton" TextColor="White" />
+                            <RadioButton GroupName="actionRight" Value="asist" Content="Asysta" x:Name="rightAsistRadioButton" TextColor="White" />
+                            <RadioButton GroupName="actionRight" Value="yellowCard" Content="Żółta kartka" x:Name="rightYellowCardRadioButton" TextColor="White" />
+                            <RadioButton GroupName="actionRight" Value="redCard" Content="Czerwona kartka" x:Name="rightRedCardRadioButton" TextColor="White" />
+                            <Entry x:Name="rightMinuteEntry" 
+                                   Placeholder="Wpisz minutę" 
+                                   Keyboard="Numeric" 
+                                   BackgroundColor="#3E3E50" 
+                                   TextColor="White" 
+                                   PlaceholderColor="#AAAAAA" />
                             <Button 
-                                Text="Dodaj"
-                                Clicked="rightAddButton"
-                                />
-
-                            <CollectionView x:Name="RightActionsCollection"
-                                HeightRequest="120"
-                                ItemsSource="{Binding RightActions}">
+                                Text="Dodaj" 
+                                BackgroundColor="#FFD700" 
+                                TextColor="#1E1E2E" 
+                                CornerRadius="20" 
+                                Padding="10" 
+                                Clicked="rightAddButton" />
+                            <CollectionView x:Name="RightActionsCollection" 
+                                            HeightRequest="120" 
+                                            ItemsSource="{Binding RightActions}" 
+                                            BackgroundColor="#2E2E40">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Orientation="Horizontal" Padding="5">
                                             <Label Text="{Binding nazwaZawodnika}" 
-                                               TextColor="White"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="FillAndExpand"/>
+                                                   TextColor="White" 
+                                                   HorizontalOptions="FillAndExpand" />
                                             <Label Text="{Binding akcja}" 
-                                               TextColor="White"
-                                               VerticalOptions="Center" 
-                                               Margin="10,0,0,0"
-                                               HorizontalOptions="FillAndExpand"/>
+                                                   TextColor="White" 
+                                                   Margin="10,0,0,0" 
+                                                   HorizontalOptions="FillAndExpand" />
                                             <Label Text="{Binding ktoraMinuta}" 
-                                               TextColor="White"
-                                               VerticalOptions="Center" 
-                                               Margin="10,0,0,0"
-                                               HorizontalOptions="FillAndExpand"/>
+                                                   TextColor="White" 
+                                                   Margin="10,0,0,0" 
+                                                   HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-
-
                         </StackLayout>
-
                     </Grid>
-                    
-                    <DatePicker x:Name="DataEntry"
-                    Date="{Binding SelectedDate}"
-                    Format="yyyy-MM-dd" />
-                    
-                    <Button Text="Dodaj mecz" Clicked="OnAddEventClicked"></Button>
-                </StackLayout>
+
+                    <DatePicker x:Name="DataEntry" 
+                                Date="{Binding SelectedDate}" 
+                                Format="yyyy-MM-dd" 
+                                BackgroundColor="#3E3E50" 
+                                TextColor="White"
+                                HorizontalOptions="Center"/>
+
+                    <Button 
+                        Text="Dodaj mecz" 
+                        BackgroundColor="#FFD700" 
+                        TextColor="#1E1E2E" 
+                        CornerRadius="20" 
+                        Padding="10" 
+                        Clicked="OnAddEventClicked" />
+                </VerticalStackLayout>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>
