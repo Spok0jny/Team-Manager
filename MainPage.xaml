@@ -73,7 +73,7 @@
             TextColor="White"
             HorizontalOptions="Center" />
 
-        <CollectionView ItemsSource="{Binding RecentEvents}" HeightRequest="350">
+        <CollectionView ItemsSource="{Binding RecentEvents}" HeightRequest="350" BindableLayout.EmptyView="Brak ostatnich wydarzeń">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BackgroundColor="#3E3E50" CornerRadius="10" Padding="10" Margin="5">
@@ -126,6 +126,7 @@
             TextColor="#1E1E2E"
             CornerRadius="20"
             Padding="10"
+            Clicked="Button_Wszystkie_Wydarzenia_Clicked"
             HorizontalOptions="Center" />
     </VerticalStackLayout>
 </Frame>

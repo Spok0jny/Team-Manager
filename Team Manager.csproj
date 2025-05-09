@@ -102,6 +102,9 @@
 	  <MauiXaml Update="SzablonPostWydarzenia.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="WszystkieWydarzenia.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
