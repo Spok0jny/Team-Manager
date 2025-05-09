@@ -1,72 +1,25 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using Team_Manager.ViewModels;
 
 namespace Team_Manager;
 
 public partial class MainPage : ContentPage
 {
-    public ObservableCollection<Event> RecentEvents { get; set; }
-    public ImageSource LatestEventPhoto { get; set; }
-    public string LatestEventTitle { get; set; }
-    public string LatestEventDate { get; set; }
-
     private readonly LocalDbServices _dbService;
+
+    public WydarzeniaViewModel ViewModel { get; }
 
     public MainPage(LocalDbServices dbService)
     {
         InitializeComponent();
         _dbService = dbService;
-
-        RecentEvents = new ObservableCollection<Event>();
-        BindingContext = this;
-
-        LoadRecentEvents();
+        ViewModel = new WydarzeniaViewModel(dbService);
+        BindingContext = ViewModel;
     }
 
-
-
-    private async void LoadRecentEvents()
+    private async void Button_Wszystkie_Wydarzenia_Clicked(object sender, EventArgs e)
     {
-        try
-        {
-            var events = (await _dbService.GetWydarzenia())
-                .OrderByDescending(e => e.dataWydarzenia)
-                .ToList();
-
-            RecentEvents.Clear();
-
-            foreach (var e in events)
-            {
-                RecentEvents.Add(new Event
-                {
-                    EventTitle = e.tytul,
-                    EventDate = e.dataWydarzenia.ToString("dd MMM yyyy"),
-                    EventPhoto = ImageSource.FromStream(() => new MemoryStream(e.zdjecie))
-                });
-            }
-
-            
-            if (RecentEvents.Any())
-            {
-                var latestEvent = RecentEvents.First();
-                LatestEventPhoto = latestEvent.EventPhoto;
-                LatestEventTitle = latestEvent.EventTitle;
-                LatestEventDate = latestEvent.EventDate;
-
-                OnPropertyChanged(nameof(LatestEventPhoto));
-                OnPropertyChanged(nameof(LatestEventTitle));
-                OnPropertyChanged(nameof(LatestEventDate));
-            }
-        }
-        catch (Exception ex)
-        {
-            await Application.Current.MainPage.DisplayAlert("Error", $"Failed to load events: {ex.Message}", "OK");
-        }
-    }
-
-    public class Event
-    {
-        public string EventTitle { get; set; }
-        public string EventDate { get; set; }
-        public ImageSource EventPhoto { get; set; }
+      
+        await Navigation.PushAsync(new WszystkieWydarzenia(_dbService));
     }
 }
