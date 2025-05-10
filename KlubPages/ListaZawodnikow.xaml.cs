@@ -40,7 +40,7 @@ public partial class ListaZawodnikow : ContentPage
 
             await _dbService.CreateZawodnik(nowyZawodnik);
 
-    
+    //test
             numerEntry.Text = string.Empty;
             pozycjaEntry.SelectedItem = null; 
             imieEntry.Text = string.Empty;
