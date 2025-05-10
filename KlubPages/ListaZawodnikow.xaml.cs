@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Team_Manager.AdminPages;
 
 namespace Team_Manager.KlubPages;
 
@@ -6,6 +7,7 @@ public partial class ListaZawodnikow : ContentPage
 {
     private readonly LocalDbServices _dbService;
     private ObservableCollection<Zawodnicy> _zawodnicy;
+    public List<Zawodnicy> ListaUsunZawodnika { get; set; }
 
     public ListaZawodnikow(LocalDbServices dbService)
     {
@@ -14,6 +16,7 @@ public partial class ListaZawodnikow : ContentPage
         _zawodnicy = new ObservableCollection<Zawodnicy>();
         listView.ItemsSource = _zawodnicy;
         _ = WczytajListeZawodnikow();
+        WczytajUsunZawodnikow();
     }
 
     private async void zapiszButton_Clicked(object sender, EventArgs e)
@@ -70,5 +73,32 @@ public partial class ListaZawodnikow : ContentPage
     private void OnFrameTapped(object sender, EventArgs e)
     {
         DisplayAlert("ok", "ok", "ok");
+    }
+    private async void WczytajUsunZawodnikow()
+    {
+
+        var ListaUsunZawodnika = await _dbService.GetZawodnicy();
+        DeletePicker.ItemsSource = ListaUsunZawodnika.Select(w => w.ImieNazwisko).ToList();
+
+    }
+
+    private void Button_Usun_Clicked(object sender, EventArgs e)
+    {
+        
+        WczytajUsunZawodnikow();
+        var wybranyZawodnik = DeletePicker.SelectedItem?.ToString();
+        if (wybranyZawodnik != null)
+        {
+            var zawodnik = _zawodnicy.FirstOrDefault(z => z.ImieNazwisko == wybranyZawodnik);
+            if (zawodnik != null)
+            {
+                _dbService.DeleteZawodnik(zawodnik);
+                _zawodnicy.Remove(zawodnik);
+                DeletePicker.SelectedItem = null;
+            }
+        }
+
+
+       
     }
 }
