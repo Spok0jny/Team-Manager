@@ -23,11 +23,12 @@
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnFrameTapped" />
                             </Frame.GestureRecognizers>
-                            <Grid ColumnDefinitions="0.2*, 0.2*, 0.4*, 0.2*">
+                            <Grid ColumnDefinitions="0.2*, 0.2*, 0.4*, 0.2*" x:Name="ZawodnicyListaGrid">
                                 <Label Grid.Column="0" Text="{Binding Numer}" TextColor="White" FontSize="14" VerticalTextAlignment="Center" />
                                 <Label Grid.Column="1" Text="{Binding Pozycja}" TextColor="White" FontSize="14" VerticalTextAlignment="Center" />
                                 <Label Grid.Column="2" Text="{Binding ImieNazwisko}" TextColor="Gold" FontSize="14" FontAttributes="Bold" VerticalTextAlignment="Center" />
                                 <Label Grid.Column="3" Text="{Binding KoniecKontraktu}" TextColor="#FFD700" FontSize="12" VerticalTextAlignment="Center" />
+                             
                             </Grid>
                         </Frame>
 
@@ -66,6 +67,7 @@
                 <DatePicker x:Name="koniecKontraktuPicker" Format="dd/MM/yyyy" />
                 <Button Text="Dodaj zawodnika" Clicked="zapiszButton_Clicked" BackgroundColor="Gold" TextColor="Black" />
             </VerticalStackLayout>
+            <Picker x:Name="DeletePicker" Title="Usuń zawodnika"  SelectedIndexChanged="Button_Usun_Clicked" Grid.Column="4" BackgroundColor="Red" TextColor="Black" TitleColor="Black"></Picker>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

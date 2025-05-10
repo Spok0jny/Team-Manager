@@ -111,12 +111,12 @@ namespace Team_Manager
         {
             await _connection.InsertAsync(frekwencja);
         }
-
+        //zwracja frekwencje po id
         public async Task<List<Frekwencja>> GetFrekwencjaByHarmonogramId(int harmonogramId)
         {
             return await _connection.Table<Frekwencja>().Where(f => f.HarmonogramId == harmonogramId).ToListAsync();
         }
-
+        //zwraca frekwencje
         public async Task<Frekwencja> GetFrekwencjaByZawodnikAndHarmonogram(string zawodnikImieNazwisko, int harmonogramId)
         {
             return await _connection.Table<Frekwencja>()
@@ -128,7 +128,7 @@ namespace Team_Manager
         {
             return await Task.Run(() => _connection.Table<OsiagnieciaDruzyny>().ToListAsync());
         }
-
+        //tworzy osiagniecie druzyny
         public async Task CreateOsiagniecieDruzyny(OsiagnieciaDruzyny osiagniecie)
         {
             await Task.Run(() => _connection.InsertAsync(osiagniecie));
@@ -143,23 +143,23 @@ namespace Team_Manager
         {
             await Task.Run(() => _connection.InsertAsync(osiagniecie));
         }
-
+        //tworzy mecz
         public async Task CreateMecz(Mecze Mecz)
         {
             await _connection.InsertAsync(Mecz);
         }
-
+        //aktualizuje akcje
         public async Task CreateAction(przebiegMeczu Akcja)
         {
             await _connection.InsertAsync(Akcja);
         }
-
+        //zwraca ilosc meczy
         public async Task<int> GetCountMecze()
         {
             var listaMeczy = await _connection.Table<Mecze>().ToListAsync();
             return listaMeczy.Count;
         }
-
+        //aktualizuje bramki
         public async Task UpdateBramki(int zawodnikId, int noweBramki)
         {
             var zawodnik = await _connection.Table<Zawodnicy>().Where(z => z.Id == zawodnikId).FirstOrDefaultAsync();
@@ -175,7 +175,7 @@ namespace Team_Manager
                 Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
             }
         }
-
+        //aktualizuje asysty
         public async Task UpdateAsysty(int zawodnikId, int noweAsysty)
         {
             
@@ -195,7 +195,7 @@ namespace Team_Manager
                 Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
             }
         }
-
+        //aktualizuje zolte kartki
         public async Task UpdateZolteKartki(int zawodnikId, int noweZolteKartki)
         {
            
@@ -215,7 +215,7 @@ namespace Team_Manager
                 Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
             }
         }
-
+        //aktualizuje czerwone kartki
         public async Task UpdateCzerwoneKartki(int zawodnikId, int noweCzerwoneKartki)
         {
             
@@ -235,7 +235,7 @@ namespace Team_Manager
                 Console.WriteLine($"Zawodnik o ID {zawodnikId} nie został znaleziony.");
             }
         }
-
+        //zwraca szczegóły meczu
         public async Task<List<przebiegMeczu>> GetAkcjeWithDetails(int matchId, int teamId)
         {
             // Pobranie akcji meczu dla danego matchId i teamId
