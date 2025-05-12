@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+ï»¿using System.Collections.ObjectModel;
 using Team_Manager.AdminPages;
 
 namespace Team_Manager.KlubPages;
@@ -7,6 +7,7 @@ public partial class ListaZawodnikow : ContentPage
 {
     private readonly LocalDbServices _dbService;
     private ObservableCollection<Zawodnicy> _zawodnicy;
+    private ObservableCollection<Zawodnicy> _zawodnicyLawka;
     public List<Zawodnicy> ListaUsunZawodnika { get; set; }
 
     public ListaZawodnikow(LocalDbServices dbService)
@@ -14,7 +15,9 @@ public partial class ListaZawodnikow : ContentPage
         InitializeComponent();
         _dbService = dbService;
         _zawodnicy = new ObservableCollection<Zawodnicy>();
-        listView.ItemsSource = _zawodnicy;
+        _zawodnicyLawka = new ObservableCollection<Zawodnicy>();
+        listViewLawka.ItemsSource = _zawodnicyLawka;
+        listViewSklad.ItemsSource = _zawodnicy;
         _ = WczytajListeZawodnikow();
         WczytajUsunZawodnikow();
     }
@@ -40,9 +43,9 @@ public partial class ListaZawodnikow : ContentPage
 
             await _dbService.CreateZawodnik(nowyZawodnik);
 
-    //test
+            //test
             numerEntry.Text = string.Empty;
-            pozycjaEntry.SelectedItem = null; 
+            pozycjaEntry.SelectedItem = null;
             imieEntry.Text = string.Empty;
             nazwiskoEntry.Text = string.Empty;
             wiekEntry.Text = string.Empty;
@@ -52,7 +55,7 @@ public partial class ListaZawodnikow : ContentPage
         }
         else
         {
-            await DisplayAlert("B³¹d", "Uzupe³nij wszystkie pola poprawnie.", "OK");
+            await DisplayAlert("BÂ³Â¹d", "UzupeÂ³nij wszystkie pola poprawnie.", "OK");
         }
     }
 
@@ -63,9 +66,10 @@ public partial class ListaZawodnikow : ContentPage
         var listaZawodnikow = await _dbService.GetZawodnicy();
 
         _zawodnicy.Clear();
+        _zawodnicyLawka.Clear();
         foreach (var zawodnik in listaZawodnikow)
         {
-            
+
             _zawodnicy.Add(zawodnik);
         }
     }
@@ -84,7 +88,7 @@ public partial class ListaZawodnikow : ContentPage
 
     private void Button_Usun_Clicked(object sender, EventArgs e)
     {
-        
+
         WczytajUsunZawodnikow();
         var wybranyZawodnik = DeletePicker.SelectedItem?.ToString();
         if (wybranyZawodnik != null)
@@ -99,6 +103,48 @@ public partial class ListaZawodnikow : ContentPage
         }
 
 
-       
+
+    }
+
+    private void ToLawkaSwap_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+
+
+        if (button?.CommandParameter is Zawodnicy zawodnicy)
+        {
+
+            if (_zawodnicy.Contains(zawodnicy))
+            {
+                _zawodnicy.Remove(zawodnicy);
+            }
+
+
+            if (!_zawodnicyLawka.Contains(zawodnicy))
+            {
+                _zawodnicyLawka.Add(zawodnicy);
+            }
+        }
+    }
+
+    private void ToSkladSwap_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+
+
+        if (button?.CommandParameter is Zawodnicy zawodnicy)
+        {
+
+            if (_zawodnicyLawka.Contains(zawodnicy))
+            {
+                _zawodnicyLawka.Remove(zawodnicy);
+            }
+
+
+            if (!_zawodnicy.Contains(zawodnicy))
+            {
+                _zawodnicy.Add(zawodnicy);
+            }
+        }
     }
 }
